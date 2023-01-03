@@ -1,15 +1,15 @@
 pipeline {
-    agent any
+    agent { docker { image 'python:3.10.7-alpine' } }
     stages {
         stage("Build") {
             steps {
-                pip install -r requirements.txt
+               sh pip install -r requirements.txt
             }
         }
         stage("Test"){
             steps {
                 echo "Test Stage" \
-                python3 app.py
+                sh python3 app.py
             }
         }
     }
